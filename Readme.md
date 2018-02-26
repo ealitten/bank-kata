@@ -1,3 +1,8 @@
+Bank kata
+------------
+
+Maker's Academy practice kata to model a basic bank account.
+
 ## Specification
 
 ### Requirements
@@ -21,3 +26,11 @@ date || credit || debit || balance
 13/01/2012 || 2000.00 || || 3000.00
 10/01/2012 || 1000.00 || || 1000.00
 ```
+
+## Instructions
+
+- Open IRB in the project root directory and `require './account'`
+- To open an account: `my_account = Account.new`
+- To make a deposit: `my_account.deposit(1000)`
+- To make a withdrawal: `my_account.withdraw(1000)`
+- To print out a statement: `my_account.transactions`
