@@ -16,7 +16,7 @@ describe Transaction do
     end
 
     it 'should store its creation date' do
-      expect(transaction.date).to eq DateTime.now
+      expect(transaction.date.strftime("%d-%m-%Y")).to eq DateTime.now.strftime("%d-%m-%Y")
     end
 
   end
