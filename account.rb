@@ -1,4 +1,5 @@
 require './transaction'
+require './printer'
 require 'Date'
 
 class Account
@@ -13,8 +14,9 @@ class Account
     @balance.dup
   end
 
-  def transactions
-    @transactions.dup
+  def transactions(printer_class = Printer)
+    p = printer_class.new
+    p.print_transaction_history(@transactions)
   end
 
   def withdraw(amount)
