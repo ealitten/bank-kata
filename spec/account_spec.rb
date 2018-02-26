@@ -6,6 +6,8 @@ describe Account do
   starting_balance = 750
   let(:transaction) { double :transaction }
   let(:transaction_class) { double :transaction_class, new: transaction }
+  let(:printer) { double :printer }
+  let(:printer_class) { double :printer_class, new: printer}
   subject(:account) { described_class.new(starting_balance, transaction_class) }
 
   describe '#initialize' do
@@ -63,6 +65,13 @@ describe Account do
     it 'should add withdrawal to transaction history' do
       account.withdraw(500)
       expect(account.transactions).to include(transaction)
+    end
+  end
+
+  describe '#transactions' do
+    it 'should send transactions array to printer' do
+      expect(printer).to receive(:print_transaction_history)
+      account.transactions(printer_class)
     end
   end
 end
