@@ -4,7 +4,9 @@ require 'Date'
 
 class Account
 
-  def initialize(starting_balance = 0, transaction_class = Transaction)
+  DEFAULT_BALANCE = 0
+
+  def initialize(starting_balance = DEFAULT_BALANCE, transaction_class = Transaction)
     @balance = starting_balance
     @transactions = []
     @transaction_class = transaction_class
