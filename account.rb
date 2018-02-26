@@ -12,12 +12,18 @@ class Account
     @balance.dup
   end
 
+  def transactions
+    @transactions.dup
+  end
+
   def withdraw(amount)
     @balance -= amount
+    @transactions << @transaction_class.new(amount)
   end
 
   def deposit(amount)
     @balance += amount
+    @transactions << @transaction_class.new(amount)
   end
 
 end
