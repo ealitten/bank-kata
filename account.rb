@@ -18,12 +18,20 @@ class Account
 
   def withdraw(amount)
     @balance -= amount
-    @transactions << @transaction_class.new(amount)
+    withdrawal = @transaction_class.new(-amount)
+    store_transaction(withdrawal)
   end
 
   def deposit(amount)
     @balance += amount
-    @transactions << @transaction_class.new(amount)
+    deposit = @transaction_class.new(amount)
+    store_transaction(deposit)
+  end
+
+  private_class_method
+
+  def store_transaction(transaction)
+    @transactions << transaction
   end
 
 end
