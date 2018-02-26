@@ -9,17 +9,15 @@ describe Printer do
 
     it 'should print out column headings' do
       transactions = []
-      expect{printer.print_transaction_history(transactions)}.to output(<<-MESSAGE).to_stdout
-date || credit || debit || balance
-      MESSAGE
+      expected_output = %{date || credit || debit || balance\n}
+      expect{printer.print_transaction_history(transactions)}.to output(expected_output).to_stdout
     end
 
     it 'should print out a transaction' do
       transactions = [transaction]
-      expect{printer.print_transaction_history(transactions)}.to output(<<-MESSAGE).to_stdout
-date || credit || debit || balance
-03/02/2001 || 123.00 ||  || 456.00
-      MESSAGE
+      expected_output = %{date || credit || debit || balance
+03/02/2001 || 123.00 ||  || 456.00}
+      expect{printer.print_transaction_history(transactions)}.to output(expected_output).to_stdout
     end
 
   end
