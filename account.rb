@@ -18,13 +18,13 @@ class Account
 
   def withdraw(amount)
     @balance -= amount
-    withdrawal = @transaction_class.new(-amount)
+    withdrawal = @transaction_class.new(-amount, @balance, DateTime.now)
     store_transaction(withdrawal)
   end
 
   def deposit(amount)
     @balance += amount
-    deposit = @transaction_class.new(amount)
+    deposit = @transaction_class.new(amount, @balance, DateTime.now)
     store_transaction(deposit)
   end
 
