@@ -16,21 +16,27 @@ class Account
     @balance.dup
   end
 
-  def transactions(printer_class = Printer)
+  def statement(printer_class = Printer)
     p = printer_class.new
     p.print_transaction_history(@transactions)
+  end
+
+  def transactions
+    @transactions.dup
   end
 
   def withdraw(amount)
     @balance -= amount
     withdrawal = @transaction_class.new(-amount, @balance, DateTime.now)
     store_transaction(withdrawal)
+    nil
   end
 
   def deposit(amount)
     @balance += amount
     deposit = @transaction_class.new(amount, @balance, DateTime.now)
     store_transaction(deposit)
+    nil
   end
 
   private_class_method

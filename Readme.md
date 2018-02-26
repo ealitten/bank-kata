@@ -33,4 +33,4 @@ date || credit || debit || balance
 - To open an account: `my_account = Account.new`
 - To make a deposit: `my_account.deposit(1000)`
 - To make a withdrawal: `my_account.withdraw(1000)`
-- To print out a statement: `my_account.transactions`
+- To print out a statement: `my_account.statement`

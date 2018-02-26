@@ -40,7 +40,7 @@ describe Account do
     
 
     it 'should add deposit to transaction history' do
-      expect(account.deposit(500)).to include(transaction)
+      expect(account.transactions).to include(transaction)
     end
   end
 
@@ -62,7 +62,7 @@ describe Account do
     end
 
     it 'should add withdrawal to transaction history' do
-      expect(account.withdraw(500)).to include(transaction)
+      expect(account.transactions).to include(transaction)
     end
   end
 
