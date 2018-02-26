@@ -2,9 +2,9 @@ require './account'
 
 describe Account do
 
-  subject(:account) { described_class.new(750, transaction_class) }
   let(:transaction) { double :transaction }
-  let(:transaction_class) { double :transaction_class, new: :transaction }
+  let(:transaction_class) { double :transaction_class, new: transaction }
+  subject(:account) { described_class.new(750, transaction_class) }
 
   describe '#initialize' do
     it 'should start with a balance of zero by default' do
@@ -23,8 +23,9 @@ describe Account do
       expect{account.deposit(500)}.to change {account.balance}.by(500)
     end
 
-    it 'should return a new transaction' do
-      expect(account.deposit(500)).to eq transaction
+    it 'should create a new transaction' do
+      account.withdraw(500)
+      expect(transaction_class).to have_received(:new)
     end
 
     it 'should add deposit to transaction history' do
@@ -40,8 +41,9 @@ describe Account do
       expect(account.balance).to eq 250
     end
 
-    it 'should return a new transaction' do
-      expect(account.deposit(500)).to eq transaction
+    it 'should create a new transaction' do
+      account.withdraw(500)
+      expect(transaction_class).to have_received(:new)
     end
 
     it 'should add withdrawal to transaction history' do
