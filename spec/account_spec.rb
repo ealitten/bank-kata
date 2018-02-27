@@ -1,4 +1,4 @@
-require './account'
+require './lib/account'
 require 'timecop'
 
 describe Account do
@@ -34,12 +34,13 @@ describe Account do
      
     it 'should create a new transaction with amount, new_balance, date' do
       amount = 500
-      account.withdraw(amount)
-      expect(transaction_class).to have_received(:new).with(-amount, starting_balance - amount, DateTime.now)
+      account.deposit(amount)
+      expect(transaction_class).to have_received(:new).with(amount, starting_balance + amount, DateTime.now)
     end
     
 
     it 'should add deposit to transaction history' do
+      account.deposit(500)
       expect(account.transactions).to include(transaction)
     end
   end
@@ -57,19 +58,20 @@ describe Account do
 
     it 'should create a new transaction with amount, new_balance, date' do
       amount = 500
-      account.deposit(amount)
-      expect(transaction_class).to have_received(:new).with(amount, starting_balance + amount, DateTime.now)
+      account.withdraw(amount)
+      expect(transaction_class).to have_received(:new).with(-amount, starting_balance - amount, DateTime.now)
     end
 
     it 'should add withdrawal to transaction history' do
+      account.withdraw(500)
       expect(account.transactions).to include(transaction)
     end
   end
 
-  describe '#transactions' do
+  describe '#statement' do
     it 'should send transactions array to printer' do
       expect(printer).to receive(:print_transaction_history)
-      account.transactions(printer_class)
+      account.statement(printer_class)
     end
   end
 end

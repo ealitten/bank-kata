@@ -1,4 +1,4 @@
-require './transaction'
+require './lib/transaction'
 require 'timecop'
 
 describe Transaction do
