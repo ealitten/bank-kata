@@ -1,5 +1,5 @@
-require './transaction'
-require './printer'
+require_relative 'transaction'
+require_relative 'printer'
 require 'Date'
 
 class Account
